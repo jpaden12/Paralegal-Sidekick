@@ -1,10 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSelectModule } from '@angular/material/select';
 import { RouterLink } from "@angular/router";
 import { AppService } from '../../app.service';
+import { FormGroup } from '@angular/forms';
 
 interface ClientProfile {
   name: string;
@@ -25,10 +26,11 @@ interface Form {
   imports: [MatFormFieldModule, MatSelectModule, MatGridListModule, MatButtonModule, RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent {
 
-  protected numberService: AppService = inject(AppService);
+  protected globalState: AppService = inject(AppService);
   
 
   clients: ClientProfile[] = [
@@ -59,5 +61,9 @@ export class HomeComponent {
       number: 960
     }
   ]
+
+  form = new FormGroup({
+    
+  })
 
 }
