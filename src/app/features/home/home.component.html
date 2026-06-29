@@ -48,6 +48,11 @@
       <h1 class="md:text-lg lg:text-2xl font-light">Fill Out Form</h1>
     </button>
 
+    <button matButton="filled" class="pl-30" (click)="numberService.setProfile(`Jamal`)">
+      <h1 class="md:text-lg lg:text-2xl font-light">We're on profile {{numberService.profile().name}}!</h1>
+    </button>
+
+
     <div class="p-4"></div>
   </div>
 

@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-form-completion',
+  selector: 'form-completion',
   imports: [],
   templateUrl: './form-completion.component.html',
   styleUrl: './form-completion.component.css',
 })
-export class FormCompletionComponent {}
+export class FormCompletionComponent {
+  
+}

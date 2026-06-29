@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSelectModule } from '@angular/material/select';
 import { RouterLink } from "@angular/router";
+import { AppService } from '../../app.service';
 
 interface ClientProfile {
   name: string;
@@ -20,12 +21,16 @@ interface Form {
 
 
 @Component({
-  selector: 'app-home',
+  selector: 'home',
   imports: [MatFormFieldModule, MatSelectModule, MatGridListModule, MatButtonModule, RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
+
+  protected numberService: AppService = inject(AppService);
+  
+
   clients: ClientProfile[] = [
     {
       name: "John Stamos",
