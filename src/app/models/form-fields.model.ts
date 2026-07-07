@@ -5,21 +5,21 @@ export class FormFields {
   private form_name: string; 
   private shorthand: string;
   private form_number: number; 
-  private state: string | null; 
-  private health_provider_name: string | null; 
-  private health_provider_address: string | null; 
-  private medical_form: boolean; 
-  private medical_accident_date: Date | null; 
-  private diagnostic_films: boolean; 
+  private state?: string | null; 
+  private health_provider_name?: string | null; 
+  private health_provider_address?: string | null; 
+  private medical_form?: boolean; 
+  private medical_accident_date?: Date | null; 
+  private diagnostic_films?: boolean; 
   // Add an enum for this type
-  private accident_type: AccidentTypes; 
-  private sub_records_room_number: number; 
-  private courthouse_name: string | null; 
-  private courthouse_address: string | null; 
-  private index_number: number; 
-  private defendants: string[] | null; 
-  private venue_county: string | null; 
-  private return_date: Date | null; 
+  private accident_type?: AccidentTypes; 
+  private sub_records_room_number?: number; 
+  private courthouse_name?: string | null; 
+  private courthouse_address?: string | null; 
+  private index_number?: number; 
+  private defendants?: string[] | null; 
+  private venue_county?: string | null; 
+  private return_date?: Date | null; 
 
   constructor(form_name: string, shorthand: string, state: string | null, health_provider_name: string | null, 
     health_provider_address: string | null, medical_accident_date: Date | null, courthouse_name: string | null, courthouse_address: string | null,

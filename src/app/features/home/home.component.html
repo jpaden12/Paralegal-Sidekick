@@ -1,10 +1,10 @@
 
 <!-- Top Spacer 1/5th of page -->
-<div class="h-3/10 w-full bg-sky-50">
+<div class="h-3/10 w-full">
   <div class="text-5xl text-center text-black pt-30">The Paralegal's Sidekick</div>
 </div>
 <!-- Main Content 3/5th of page -->
-<div class="h-2/5 w-full bg-sky-200 flex flex-row">
+<div class="h-2/5 w-full flex flex-row">
   <!-- Labels -->
   <div class="grid grid-rows-2 gap-2 w-1/2 h-full">
     <div class="p-4 text-black text-2xl text-right pt-20">Choose Form</div>
@@ -13,21 +13,21 @@
 
 
   <!-- Dropdown Selects -->
-  <div class="h-full w-1/2 flex flex-col">
-    <div class="h-1/2 w-full bg-violet-400">
+  <div class="h-full w-1/2 flex flex-col" [formGroup]="clientAndFormSelect">
+    <div class="h-1/2 w-full">
       <mat-form-field class="pl-40 pt-15">
-        <mat-select>
-          @for (client of clients; track client) {
-            <mat-option [value]="client.name">{{client.name}}</mat-option>
+        <mat-select (selectionChange)="onFormChange($event)" formControlName="formSelect">
+          @for (form of forms; track form) {
+            <mat-option [value]="form.name">{{form.name}}</mat-option>
           }
         </mat-select>
       </mat-form-field> 
     </div>
-    <div class="h-1/2 w-full bg-violet-600">
+    <div class="h-1/2 w-full">
       <mat-form-field class="pl-40">
-        <mat-select>
-          @for (form of forms; track form) {
-            <mat-option [value]="form.name">{{form.name}}</mat-option>
+        <mat-select (selectionChange)="onClientChange($event)" formControlName="clientSelect">
+          @for (client of this.returnedClients; track client) {
+            <mat-option [value]="client.name">{{client.name}}</mat-option>
           }
         </mat-select>
       </mat-form-field>
@@ -44,12 +44,8 @@
       <h1 class="md:text-lg lg:text-2xl font-light">Edit Client Profiles</h1>
     </button>
 
-    <button matButton="filled" class="pl-30" routerLink="/form">
+    <button matButton="filled" class="pl-30" (click)="proceedToForm()">
       <h1 class="md:text-lg lg:text-2xl font-light">Fill Out Form</h1>
-    </button>
-
-    <button matButton="filled" class="pl-30" (click)="globalState.setProfile(`Jamal`)">
-      <h1 class="md:text-lg lg:text-2xl font-light">We're on profile {{globalState.profile().name}}!</h1>
     </button>
 
 

@@ -28,6 +28,6 @@ export const routes: Routes = [
   {
     path: 'profile',
     component: ClientProfileComponent,
-    title: 'Profile Page',
+    title: 'Profile Page'
   }
 ];

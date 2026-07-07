@@ -22,7 +22,8 @@
     "@angular/material": "^21.2.14",
     "@angular/platform-browser": "^21.2.0",
     "@angular/router": "^21.2.0",
-    "rxjs": "~7.8.0",
+    "@signaldb/angular": "^1.0.6",
+    "@signaldb/core": "^1.8.1",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
