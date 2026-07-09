@@ -7,24 +7,35 @@
   <div class="text-3xl text-black">{{formName}} form information for {{clientName}}</div>
 </div>
 
-<!-- Form - 70% of page -->
-<div class="h-7/10 w-full bg-sky-200 flex flex-row" [formGroup]="form">
+<!-- Form - scrollable -->
+<div class="w-full bg-sky-200 flex flex-row" [formGroup]="form">
   <!-- Field Labels -->
-  <div class="grid grid-rows-3 gap-2 w-1/2 h-full">
-    <div class="p-4 text-black text-2xl text-right flex items-center justify-end">Client Name</div>
-    <div class="p-4 text-black text-2xl text-right flex items-center justify-end">Client DOB</div>
-    <div class="p-4 text-black text-2xl text-right flex items-center justify-end">Client Address</div>
+  <div class="grid grid-rows-12 w-1/2">
+    <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Client Name</div>
+    <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Client DOB</div>
+    <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Client Home Address</div>
+    <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Health Provider Name</div>
+    <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Health Provider Address</div>
+    <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Document Destination Name</div>
+    <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Document Destination Address</div>
+    <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Medical Form</div>
+    <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Medical Accident Date</div>
+    <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Accident Type</div>
+    <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Subpoena Records Room Number</div>
+    <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Courthouse Name</div>
+    <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Courthouse Address</div>
+    <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Index Number</div>
   </div>
 
   <!-- Inputs -->
-  <div class="h-full w-1/2 flex flex-col">
-    <div class="h-1/3 w-full flex items-center pl-8">
+  <div class="w-1/2 flex flex-col">
+    <div class="flex items-center pl-8 min-h-20 pt-4">
       <mat-form-field class="w-72">
         <mat-label>Client Name</mat-label>
         <textarea matInput formControlName="clientName" rows="1"></textarea>
       </mat-form-field>
     </div>
-    <div class="h-1/3 w-full flex items-center pl-8">
+    <div class="flex items-center pl-8 min-h-20">
       <mat-form-field class="w-72">
         <mat-label>Client DOB</mat-label>
         <input matInput [matDatepicker]="dobPicker" formControlName="clientDOB" />
@@ -32,10 +43,79 @@
         <mat-datepicker #dobPicker />
       </mat-form-field>
     </div>
-    <div class="h-1/3 w-full flex items-center pl-8">
+    <div class="flex items-center pl-8 min-h-20">
       <mat-form-field class="w-72">
-        <mat-label>Client Address</mat-label>
+        <mat-label>Client Home Address</mat-label>
         <textarea matInput formControlName="clientAddress" rows="1"></textarea>
+      </mat-form-field>
+    </div>
+    <div class="flex items-center pl-8 min-h-20">
+      <mat-form-field class="w-72">
+        <mat-label>Health Provider Name</mat-label>
+        <textarea matInput formControlName="healthProviderName" rows="1"></textarea>
+      </mat-form-field>
+    </div>
+    <div class="flex items-center pl-8 min-h-20">
+      <mat-form-field class="w-72">
+        <mat-label>Health Provider Address</mat-label>
+        <textarea matInput formControlName="healthProviderAddress" rows="1"></textarea>
+      </mat-form-field>
+    </div>
+    <div class="flex items-center pl-8 min-h-20">
+      <mat-form-field class="w-72">
+        <mat-label>Document Destination Name</mat-label>
+        <textarea matInput formControlName="documentDestinationName" rows="1"></textarea>
+      </mat-form-field>
+    </div>
+    <div class="flex items-center pl-8 min-h-20">
+      <mat-form-field class="w-72">
+        <mat-label>Document Destination Address</mat-label>
+        <textarea matInput formControlName="documentDestinationAddress" rows="1"></textarea>
+      </mat-form-field>
+    </div>
+    <div class="flex items-center pl-8 min-h-20">
+      <mat-checkbox formControlName="medicalForm">Medical Form</mat-checkbox>
+    </div>
+    <div class="flex items-center pl-8 min-h-20">
+      <mat-form-field class="w-72">
+        <mat-label>Medical Accident Date</mat-label>
+        <input matInput [matDatepicker]="accidentDatePicker" formControlName="medicalAccidentDate" />
+        <mat-datepicker-toggle matIconSuffix [for]="accidentDatePicker" />
+        <mat-datepicker #accidentDatePicker />
+      </mat-form-field>
+    </div>
+    <div class="flex items-center pl-8 min-h-20">
+      <mat-form-field class="w-72">
+        <mat-label>Accident Type</mat-label>
+        <mat-select formControlName="accidentType">
+          @for (type of accidentTypes; track type) {
+            <mat-option [value]="type">{{ type }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="flex items-center pl-8 min-h-20">
+      <mat-form-field class="w-72">
+        <mat-label>Subpoena Records Room Number</mat-label>
+        <textarea matInput formControlName="subpoenaRecordsRoomNumber" rows="1"></textarea>
+      </mat-form-field>
+    </div>
+    <div class="flex items-center pl-8 min-h-20">
+      <mat-form-field class="w-72">
+        <mat-label>Courthouse Name</mat-label>
+        <textarea matInput formControlName="courthouseName" rows="1"></textarea>
+      </mat-form-field>
+    </div>
+    <div class="flex items-center pl-8 min-h-20">
+      <mat-form-field class="w-72">
+        <mat-label>Courthouse Address</mat-label>
+        <textarea matInput formControlName="courthouseAddress" rows="1"></textarea>
+      </mat-form-field>
+    </div>
+    <div class="flex items-center pl-8 min-h-20">
+      <mat-form-field class="w-72">
+        <mat-label>Index Number</mat-label>
+        <textarea matInput formControlName="indexNumber" rows="1"></textarea>
       </mat-form-field>
     </div>
   </div>

@@ -10,6 +10,7 @@ import { MockForm } from '../../models/mock-form.model';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { FormControl, FormsModule, ReactiveFormsModule, FormGroup, ɵInternalFormsSharedModule } from '@angular/forms';
 import { LocalDbService } from '../../core/local-db.service';
+import { ClientProfile } from '../../models/client-profile.model';
 
 
 @Component({
@@ -25,33 +26,54 @@ export class HomeComponent implements OnInit {
   protected router: Router = inject(Router);
   protected dbService: LocalDbService = inject(LocalDbService);
 
-  protected returnedClients: MockClientProfile[] | undefined;
-
-  
+  protected returnedClients: ClientProfile[] | undefined;
   
 
-  clients: MockClientProfile[] = [
+  clients: ClientProfile[] = [
     {
       id: 1,
-      name: "Timothy Walz",
-      date_of_birth: new Date(1996, 4, 4), 
-      home_address: "123 Sesame St", 
-      medical_provider: "Sanjay Gupta"
+      name: "Khloe Kardashian", 
+      date_of_birth: new Date(),
+      ssn: 1,
+      address: "string", 
+
+      medical_provider_name: "The Doctor",
+      medical_provider_address: "123 Medical Street",
+      savedForms: [],
     },
     {
       id: 2,
-      name: "SpongeBob SquarePants",
-      date_of_birth: new Date(1999, 3, 4), 
-      home_address: "123 Sesame St", 
-      medical_provider: "Dr. Krabs"
+      name: "Patrick Mahomes", 
+      date_of_birth: new Date(),
+      ssn: 2,
+      address: "string", 
+
+      medical_provider_name: "The Doctor",
+      medical_provider_address: "123 Physicans Drive",
+      savedForms: [],
     },
     {
       id: 3,
-      name: "Jalen Brunson",
-      date_of_birth: new Date(1990, 5, 4), 
-      home_address: "Madison Sq Garden", 
-      medical_provider: "Sanjay Gupta"
-    }
+      name: "Jerry Seinfeld", 
+      date_of_birth: new Date(),
+      ssn: 3,
+      address: "string", 
+
+      medical_provider_name: "The Doctor",
+      medical_provider_address: "123 Nursing Avenue",
+      savedForms: [],
+    },
+    {
+      id: 4,
+      name: "Lin-Manuel Miranda", 
+      date_of_birth: new Date(),
+      ssn: 4,
+      address: "string", 
+
+      medical_provider_name: "The Doctor",
+      medical_provider_address: "123 Feelbetter Blvd",
+      savedForms: [],
+    },
   ]
 
   forms: MockForm[] = [
@@ -85,9 +107,11 @@ export class HomeComponent implements OnInit {
   }
 
   constructor() {
+    // Replace with data persistence
     this.dbService.createNewClient(this.clients[0]);
     this.dbService.createNewClient(this.clients[1]);
     this.dbService.createNewClient(this.clients[2]);
+    this.dbService.createNewClient(this.clients[3]);
 
     effect((onCleanup) => {
       const clientsCursor = this.dbService.getAllClients();
@@ -118,7 +142,7 @@ export class HomeComponent implements OnInit {
       // Show an error message
     } else {
       // Update the global state with the selected client
-      const switchToClient: MockClientProfile | undefined = this.clients.find((client) => { return client.name == selectedClient });
+      const switchToClient: ClientProfile | undefined = this.clients.find((client) => { return client.name == selectedClient });
       if (switchToClient != null) {
         this.globalState.setCurrentClientProfile(switchToClient);
       }

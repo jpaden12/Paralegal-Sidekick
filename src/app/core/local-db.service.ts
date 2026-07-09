@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { MockClientProfile } from '../models/mock-client-profile.model';
-import { Collection, Cursor } from '@signaldb/core';
-import angularReactivityAdapter from '@signaldb/angular';
-import { CollectionsObject } from '../models/collections-object';
-import { MockForm } from '../models/mock-form.model';
+import { Cursor } from '@signaldb/core';
 import { ClientProfileService } from './client-profile.service';
+import { ClientProfile } from '../models/client-profile.model';
 
 
 @Injectable({
@@ -21,12 +19,12 @@ export class LocalDbService {
     
   }
 
-  createNewClient(newClient: MockClientProfile): void {
+  createNewClient(newClient: ClientProfile): void {
     this.clientProfiles.insert(newClient);
     // Catch potential error
   }
 
-  getAllClients(): Cursor<MockClientProfile, MockClientProfile, MockClientProfile> | undefined {
+  getAllClients(): Cursor<ClientProfile, ClientProfile, ClientProfile> | undefined {
     return this.clientProfiles.find({});
   }
 

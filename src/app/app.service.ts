@@ -9,7 +9,7 @@ import { MockClientProfile } from './models/mock-client-profile.model';
 })
 export class AppService {
 
-  private _profile = signal<MockClientProfile | null>(null);
+  private _profile = signal<ClientProfile | null>(null);
   readonly profile = this._profile.asReadonly(); 
 
   private _form = signal<MockForm | null>(null);
@@ -24,7 +24,7 @@ export class AppService {
     this._count.update(val => val + 1);
   }
 
-  setProfile(newProfile: MockClientProfile) {
+  setProfile(newProfile: ClientProfile) {
     let currentName: string = this.profile.name;
     if (newProfile != undefined) {
       this._profile.set(newProfile);
@@ -39,7 +39,7 @@ export class AppService {
     this._form.set(newForm);
   }
 
-  setCurrentClientProfile(newProfile: MockClientProfile) {
+  setCurrentClientProfile(newProfile: ClientProfile) {
     this._profile.set(newProfile);
   }
   
