@@ -7,8 +7,6 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 import { AppService } from '../../app.service';
-import { MockClientProfile } from '../../models/mock-client-profile.model';
-import { MockForm } from '../../models/mock-form.model';
 import { ClientProfile } from '../../models/client-profile.model';
 import { FormFields } from '../../models/form-fields.model';
 
@@ -53,8 +51,6 @@ export class FormCompletionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // console.log("Current Client: " + this.currentClient?.name);
-    // console.log("Current Form: " + JSON.stringify(this.currentForm));
     this.formName = this.currentForm?.formName;
     this.formId = this.currentForm?.formId;
     this.clientName = this.currentClient?.name;

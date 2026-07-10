@@ -5,9 +5,6 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { Router, RouterLink } from "@angular/router";
 import { AppService } from '../../app.service';
-import { MockClientProfile } from '../../models/mock-client-profile.model';
-import { MockForm } from '../../models/mock-form.model';
-import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { FormControl, FormsModule, ReactiveFormsModule, FormGroup, ɵInternalFormsSharedModule } from '@angular/forms';
 import { LocalDbService } from '../../core/local-db.service';
 import { ClientProfile } from '../../models/client-profile.model';
@@ -78,31 +75,6 @@ export class HomeComponent implements OnInit {
       savedForms: [],
     },
   ]
-
-  forms: MockForm[] = [
-    {
-      id: 1,
-      name: "HIPAA Authorization",
-      state: "NY",
-      number: 960
-    }, 
-    {
-      id: 2,
-      name: "Court Subpoena",
-      state: "N/A",
-      number: 0
-    },
-    {
-      id: 3,
-      name: "Office Subpoena",
-      state: "N/A",
-      number: 0
-    }
-  ]
-
-  // forms: FormFields[] [
-
-  // ]
 
   clientAndFormSelect = new FormGroup({
     clientSelect: new FormControl(''),
