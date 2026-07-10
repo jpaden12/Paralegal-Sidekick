@@ -14,17 +14,39 @@
     <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Client Name</div>
     <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Client DOB</div>
     <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Client Home Address</div>
-    <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Health Provider Name</div>
-    <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Health Provider Address</div>
-    <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Document Destination Name</div>
-    <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Document Destination Address</div>
-    <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Medical Form</div>
-    <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Medical Accident Date</div>
-    <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Accident Type</div>
-    <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Subpoena Records Room Number</div>
-    <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Courthouse Name</div>
-    <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Courthouse Address</div>
-    <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Index Number</div>
+    @if (this.currentForm?.healthProviderName !== undefined) {
+      <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Health Provider Name</div>
+    }
+    @if (this.currentForm?.healthProviderAddress !== undefined) {
+      <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Health Provider Address</div>
+    }
+    @if (this.currentForm?.documentDestinationName !== undefined) {
+      <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Document Destination Name</div>
+    }
+    @if (this.currentForm?.documentDestinationAddress !== undefined) {
+      <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Document Destination Address</div>
+    }
+    @if (this.currentForm?.medicalForm !== undefined) {
+      <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Medical Form</div>
+    }
+    @if (this.currentForm?.medicalAccidentDate !== undefined) {
+      <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Medical Accident Date</div>
+    }
+    @if (this.currentForm?.accidentType !== undefined) {
+      <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Accident Type</div>
+    }
+    @if (this.currentForm?.subRecordsRoomNumber !== undefined) {
+      <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Subpoena Records Room Number</div>
+    }
+    @if (this.currentForm?.courthouseName !== undefined) {
+      <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Courthouse Name</div>
+    }
+    @if (this.currentForm?.courthouseAddress !== undefined) {
+      <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Courthouse Address</div>
+    }
+    @if (this.currentForm?.indexNumber !== undefined) {
+      <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Index Number</div>
+    }
   </div>
 
   <!-- Inputs -->
@@ -49,75 +71,98 @@
         <textarea matInput formControlName="clientAddress" rows="1"></textarea>
       </mat-form-field>
     </div>
-    <div class="flex items-center pl-8 min-h-20">
-      <mat-form-field class="w-72">
-        <mat-label>Health Provider Name</mat-label>
-        <textarea matInput formControlName="healthProviderName" rows="1"></textarea>
-      </mat-form-field>
-    </div>
-    <div class="flex items-center pl-8 min-h-20">
-      <mat-form-field class="w-72">
-        <mat-label>Health Provider Address</mat-label>
-        <textarea matInput formControlName="healthProviderAddress" rows="1"></textarea>
-      </mat-form-field>
-    </div>
-    <div class="flex items-center pl-8 min-h-20">
-      <mat-form-field class="w-72">
-        <mat-label>Document Destination Name</mat-label>
-        <textarea matInput formControlName="documentDestinationName" rows="1"></textarea>
-      </mat-form-field>
-    </div>
-    <div class="flex items-center pl-8 min-h-20">
-      <mat-form-field class="w-72">
-        <mat-label>Document Destination Address</mat-label>
-        <textarea matInput formControlName="documentDestinationAddress" rows="1"></textarea>
-      </mat-form-field>
-    </div>
-    <div class="flex items-center pl-8 min-h-20">
-      <mat-checkbox formControlName="medicalForm">Medical Form</mat-checkbox>
-    </div>
-    <div class="flex items-center pl-8 min-h-20">
-      <mat-form-field class="w-72">
-        <mat-label>Medical Accident Date</mat-label>
-        <input matInput [matDatepicker]="accidentDatePicker" formControlName="medicalAccidentDate" />
-        <mat-datepicker-toggle matIconSuffix [for]="accidentDatePicker" />
-        <mat-datepicker #accidentDatePicker />
-      </mat-form-field>
-    </div>
-    <div class="flex items-center pl-8 min-h-20">
-      <mat-form-field class="w-72">
-        <mat-label>Accident Type</mat-label>
-        <mat-select formControlName="accidentType">
-          @for (type of accidentTypes; track type) {
-            <mat-option [value]="type">{{ type }}</mat-option>
-          }
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div class="flex items-center pl-8 min-h-20">
-      <mat-form-field class="w-72">
-        <mat-label>Subpoena Records Room Number</mat-label>
-        <textarea matInput formControlName="subpoenaRecordsRoomNumber" rows="1"></textarea>
-      </mat-form-field>
-    </div>
-    <div class="flex items-center pl-8 min-h-20">
-      <mat-form-field class="w-72">
-        <mat-label>Courthouse Name</mat-label>
-        <textarea matInput formControlName="courthouseName" rows="1"></textarea>
-      </mat-form-field>
-    </div>
-    <div class="flex items-center pl-8 min-h-20">
-      <mat-form-field class="w-72">
-        <mat-label>Courthouse Address</mat-label>
-        <textarea matInput formControlName="courthouseAddress" rows="1"></textarea>
-      </mat-form-field>
-    </div>
-    <div class="flex items-center pl-8 min-h-20">
-      <mat-form-field class="w-72">
-        <mat-label>Index Number</mat-label>
-        <textarea matInput formControlName="indexNumber" rows="1"></textarea>
-      </mat-form-field>
-    </div>
+    @if (this.currentForm?.healthProviderName !== undefined) {
+      <div class="flex items-center pl-8 min-h-20">
+        <mat-form-field class="w-72">
+          <mat-label>Health Provider Name</mat-label>
+          <textarea matInput formControlName="healthProviderName" rows="1"></textarea>
+        </mat-form-field>
+      </div>
+    }
+    
+    @if (this.currentForm?.healthProviderAddress !== undefined) {
+      <div class="flex items-center pl-8 min-h-20">
+        <mat-form-field class="w-72">
+          <mat-label>Health Provider Address</mat-label>
+          <textarea matInput formControlName="healthProviderAddress" rows="1"></textarea>
+        </mat-form-field>
+      </div>
+    }
+    @if (this.currentForm?.documentDestinationName !== undefined) {
+      <div class="flex items-center pl-8 min-h-20">
+        <mat-form-field class="w-72">
+          <mat-label>Document Destination Name</mat-label>
+          <textarea matInput formControlName="documentDestinationName" rows="1"></textarea>
+        </mat-form-field>
+      </div>
+    }
+    @if (this.currentForm?.documentDestinationAddress !== undefined) {
+      <div class="flex items-center pl-8 min-h-20">
+        <mat-form-field class="w-72">
+          <mat-label>Document Destination Address</mat-label>
+          <textarea matInput formControlName="documentDestinationAddress" rows="1"></textarea>
+        </mat-form-field>
+      </div>
+    }
+    @if (this.currentForm?.medicalForm !== undefined) {
+      <div class="flex items-center pl-8 min-h-20">
+        <mat-checkbox formControlName="medicalForm">Medical Form</mat-checkbox>
+      </div>
+    }
+    @if (this.currentForm?.medicalAccidentDate !== undefined) {
+      <div class="flex items-center pl-8 min-h-20">
+        <mat-form-field class="w-72">
+          <mat-label>Medical Accident Date</mat-label>
+          <input matInput [matDatepicker]="accidentDatePicker" formControlName="medicalAccidentDate" />
+          <mat-datepicker-toggle matIconSuffix [for]="accidentDatePicker" />
+          <mat-datepicker #accidentDatePicker />
+        </mat-form-field>
+      </div>
+    }
+    @if (this.currentForm?.accidentType !== undefined) {
+      <div class="flex items-center pl-8 min-h-20">
+        <mat-form-field class="w-72">
+          <mat-label>Accident Type</mat-label>
+          <mat-select formControlName="accidentType">
+            @for (type of accidentTypes; track type) {
+              <mat-option [value]="type">{{ type }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+    }
+    @if (this.currentForm?.subRecordsRoomNumber !== undefined) {
+      <div class="flex items-center pl-8 min-h-20">
+        <mat-form-field class="w-72">
+          <mat-label>Subpoena Records Room Number</mat-label>
+          <textarea matInput formControlName="subpoenaRecordsRoomNumber" rows="1"></textarea>
+        </mat-form-field>
+      </div>
+    }
+    @if (this.currentForm?.courthouseName !== undefined) {
+      <div class="flex items-center pl-8 min-h-20">
+        <mat-form-field class="w-72">
+          <mat-label>Courthouse Name</mat-label>
+          <textarea matInput formControlName="courthouseName" rows="1"></textarea>
+        </mat-form-field>
+      </div>
+    }
+    @if (this.currentForm?.courthouseAddress !== undefined) {
+      <div class="flex items-center pl-8 min-h-20">
+        <mat-form-field class="w-72">
+          <mat-label>Courthouse Address</mat-label>
+          <textarea matInput formControlName="courthouseAddress" rows="1"></textarea>
+        </mat-form-field>
+      </div>
+    }
+    @if (this.currentForm?.indexNumber !== undefined) {
+      <div class="flex items-center pl-8 min-h-20">
+        <mat-form-field class="w-72">
+          <mat-label>Index Number</mat-label>
+          <textarea matInput formControlName="indexNumber" rows="1"></textarea>
+        </mat-form-field>
+      </div>
+    }
   </div>
 </div>
 

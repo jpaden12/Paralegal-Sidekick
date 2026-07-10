@@ -10,6 +10,7 @@ import { AppService } from '../../app.service';
 import { MockClientProfile } from '../../models/mock-client-profile.model';
 import { MockForm } from '../../models/mock-form.model';
 import { ClientProfile } from '../../models/client-profile.model';
+import { FormFields } from '../../models/form-fields.model';
 
 @Component({
   selector: 'form-completion',
@@ -20,9 +21,11 @@ import { ClientProfile } from '../../models/client-profile.model';
 export class FormCompletionComponent implements OnInit {
 
   protected globalState: AppService = inject(AppService);
-  private currentClient: ClientProfile | null;
-  private currentForm: MockForm | null;
+  protected currentClient: ClientProfile | null;
+  protected currentForm: FormFields | null;
+
   formName: string | undefined; 
+  formId: number | undefined;
   clientName: string | undefined; 
 
   form = new FormGroup({
@@ -50,12 +53,13 @@ export class FormCompletionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("Current Client: " + this.currentClient?.name);
-    console.log("Current Form: " + this.currentForm?.name);
-    this.formName = this.currentForm?.name;
+    // console.log("Current Client: " + this.currentClient?.name);
+    // console.log("Current Form: " + JSON.stringify(this.currentForm));
+    this.formName = this.currentForm?.formName;
+    this.formId = this.currentForm?.formId;
     this.clientName = this.currentClient?.name;
     // 
-    switch(this.currentForm?.id) {
+    switch(this.formId) {
 
       case 1: 
         // HIPAA Authorization 

@@ -11,6 +11,8 @@ import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { FormControl, FormsModule, ReactiveFormsModule, FormGroup, ɵInternalFormsSharedModule } from '@angular/forms';
 import { LocalDbService } from '../../core/local-db.service';
 import { ClientProfile } from '../../models/client-profile.model';
+import { FormFields } from '../../models/form-fields.model';
+import { FormFieldsService } from '../../core/form-fields.service';
 
 
 @Component({
@@ -25,6 +27,7 @@ export class HomeComponent implements OnInit {
   protected globalState: AppService = inject(AppService);
   protected router: Router = inject(Router);
   protected dbService: LocalDbService = inject(LocalDbService);
+  protected formFieldsService: FormFieldsService = inject(FormFieldsService);
 
   protected returnedClients: ClientProfile[] | undefined;
   
@@ -97,6 +100,10 @@ export class HomeComponent implements OnInit {
     }
   ]
 
+  // forms: FormFields[] [
+
+  // ]
+
   clientAndFormSelect = new FormGroup({
     clientSelect: new FormControl(''),
     formSelect: new FormControl(''),
@@ -139,6 +146,7 @@ export class HomeComponent implements OnInit {
     
     // Update client state
     if (this.clientAndFormSelect.get('clientSelect')?.value == "") {
+      
       // Show an error message
     } else {
       // Update the global state with the selected client
@@ -149,13 +157,11 @@ export class HomeComponent implements OnInit {
     }
 
     // Update form state
-    if (this.clientAndFormSelect.get('formSelect')?.value == "") {
-
+    if (this.clientAndFormSelect.get('formSelect')?.getRawValue() == "") {
+      
     } else {
-      const switchToForm: MockForm | undefined = this.forms.find((form) => { return form.name == selectedForm});
-      if (switchToForm != null) {
-        this.globalState.setCurrentForm(switchToForm);
-      }
+      const formToSwitchTo: FormFields = this.formFieldsService.formMap[selectedForm];
+      this.globalState.setCurrentForm(formToSwitchTo);
     }
 
     // Switch to form page

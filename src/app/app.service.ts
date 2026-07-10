@@ -12,7 +12,7 @@ export class AppService {
   private _profile = signal<ClientProfile | null>(null);
   readonly profile = this._profile.asReadonly(); 
 
-  private _form = signal<MockForm | null>(null);
+  private _form = signal<FormFields | null>(null);
   readonly form = this._form.asReadonly();
 
 
@@ -35,7 +35,7 @@ export class AppService {
     // let currentForm: string = 
   }
 
-  setCurrentForm(newForm: MockForm) {
+  setCurrentForm(newForm: FormFields) {
     this._form.set(newForm);
   }
 
