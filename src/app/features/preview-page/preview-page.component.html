@@ -1,1 +1,12 @@
-<p>preview-page works!</p>
+<!-- Header Containing form and profile name - 15% of page -->
+<div class="h-1/20 w-full bg-sky-50">
+
+</div>
+<!-- Top Spacer Containing Form Name - 15% of Page-->
+<div class="h-15/100 w-full bg-sky-100 flex items-center justify-center">
+  <div class="text-3xl text-black">Previewing completed {{formName}} form information for {{clientName}}</div>
+</div>
+
+<div class="pdf-box">
+  <iframe [src]="hipaaFormPDF" title="HIPAA Authorization form preview" class="pdf-frame"></iframe>
+</div>

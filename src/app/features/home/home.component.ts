@@ -10,6 +10,7 @@ import { LocalDbService } from '../../core/local-db.service';
 import { ClientProfile } from '../../models/client-profile.model';
 import { FormFields } from '../../models/form-fields.model';
 import { FormFieldsService } from '../../core/form-fields.service';
+import { form } from '@angular/forms/signals';
 
 
 @Component({
@@ -27,6 +28,9 @@ export class HomeComponent implements OnInit {
   protected formFieldsService: FormFieldsService = inject(FormFieldsService);
 
   protected returnedClients: ClientProfile[] | undefined;
+
+  protected _forms: Record<string, FormFields>;
+  protected forms: FormFields[] = [];
   
 
   clients: ClientProfile[] = [
@@ -92,6 +96,10 @@ export class HomeComponent implements OnInit {
     this.dbService.createNewClient(this.clients[2]);
     this.dbService.createNewClient(this.clients[3]);
 
+    this._forms = this.formFieldsService.formMap;
+    this.forms[0] = this._forms["HIPAA Authorization"];
+    this.forms[1] = this._forms["Court Subpoena"];
+
     effect((onCleanup) => {
       const clientsCursor = this.dbService.getAllClients();
       this.returnedClients = clientsCursor?.fetch();
@@ -141,7 +149,30 @@ export class HomeComponent implements OnInit {
   }
 
   proceedToEditProfiles() {
+    const selectedClient: string = this.clientAndFormSelect.get('clientSelect')?.getRawValue();
+    const selectedForm: string = this.clientAndFormSelect.get('formSelect')?.getRawValue();
 
+    if (this.clientAndFormSelect.get('clientSelect')?.value == "") {
+      
+      // Show an error message
+    } else {
+      // Update the global state with the selected client
+      const switchToClient: ClientProfile | undefined = this.clients.find((client) => { return client.name == selectedClient });
+      if (switchToClient != null) {
+        this.globalState.setCurrentClientProfile(switchToClient);
+      }
+    }
+    
+      // Update form state
+    if (this.clientAndFormSelect.get('formSelect')?.getRawValue() == "") {
+      
+    } else {
+      const formToSwitchTo: FormFields = this.formFieldsService.formMap[selectedForm];
+      this.globalState.setCurrentForm(formToSwitchTo);
+    }
+    
+    
+    this.router.navigate(['/preview'])
   }
 
 }

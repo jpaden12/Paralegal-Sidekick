@@ -1,0 +1,12 @@
+.pdf-box {
+  width: 66.6667%;
+  height: 70vh;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+}
+
+.pdf-frame {
+  width: 100%;
+  height: 100%;
+  border: none;
+}

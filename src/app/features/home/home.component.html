@@ -18,7 +18,7 @@
       <mat-form-field class="pl-40 pt-15">
         <mat-select (selectionChange)="onFormChange($event)" formControlName="formSelect">
           @for (form of forms; track form) {
-            <mat-option [value]="form.name">{{form.name}}</mat-option>
+            <mat-option [value]="form.formName">{{form.formName}}</mat-option>
           }
         </mat-select>
       </mat-form-field> 
@@ -40,7 +40,7 @@
 
   <div class="grid grid-cols-4 gap-2 w-full h-full">
     <div class="p-4"></div>
-    <button matButton="filled" routerLink="/profile">
+    <button matButton="filled" (click)="proceedToEditProfiles()">
       <h1 class="md:text-lg lg:text-2xl font-light">Edit Client Profiles</h1>
     </button>
 

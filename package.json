@@ -24,6 +24,7 @@
     "@angular/router": "^21.2.0",
     "@signaldb/angular": "^1.0.6",
     "@signaldb/core": "^1.8.1",
+    "ngx-extended-pdf-viewer": "^28.1.0",
     "tslib": "^2.3.0"
   },
   "devDependencies": {

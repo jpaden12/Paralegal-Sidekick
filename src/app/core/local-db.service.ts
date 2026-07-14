@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { MockClientProfile } from '../models/mock-client-profile.model';
 import { Cursor } from '@signaldb/core';
 import { ClientProfileService } from './client-profile.service';
 import { ClientProfile } from '../models/client-profile.model';

@@ -21,7 +21,7 @@ export const routes: Routes = [
     title: 'Form Completion'
   },
   {
-    path: 'form-preview',
+    path: 'preview',
     component: PreviewPageComponent,
     title: 'Form Preview'
   },
