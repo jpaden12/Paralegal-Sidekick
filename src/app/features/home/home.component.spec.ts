@@ -19,4 +19,13 @@ describe('HomeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have two elements for choosing things', async () => {
+    const app = fixture.debugElement.componentInstance;
+    const nat = fixture.nativeElement as HTMLElement;
+    const chooseElements = nat.querySelectorAll('.choose');
+    expect(chooseElements?.length).toBe(2); 
+  }); 
+
+
 });

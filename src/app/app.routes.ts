@@ -13,7 +13,7 @@ export const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
-    title: `Paralegal's Sidekick`
+    title: 'Title'
   },
   {
     path: 'form',
