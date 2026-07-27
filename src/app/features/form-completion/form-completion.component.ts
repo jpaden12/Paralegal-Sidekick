@@ -9,14 +9,18 @@ import { MatSelectModule } from '@angular/material/select';
 import { AppService } from '../../app.service';
 import { ClientProfile } from '../../models/client-profile.model';
 import { FormFields } from '../../models/form-fields.model';
+import { Router } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'form-completion',
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatCheckboxModule, MatSelectModule],
+  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatCheckboxModule, MatSelectModule, MatButtonModule],
   templateUrl: './form-completion.component.html',
   styleUrl: './form-completion.component.css',
 })
 export class FormCompletionComponent implements OnInit {
+
+  protected router: Router = inject(Router);
 
   protected globalState: AppService = inject(AppService);
   protected currentClient: ClientProfile | null;
@@ -73,6 +77,15 @@ export class FormCompletionComponent implements OnInit {
 
     }
 
+  }
+
+  proceedToPreview(): void {
+    if (this.currentForm) {
+      this.currentForm.healthProviderName = this.form.get('healthProviderName')?.getRawValue();
+      this.currentForm.healthProviderAddress = this.form.get('healthProviderAddress')?.getRawValue();
+
+    }
+    this.router.navigate(['/preview'])
   }
 
 
