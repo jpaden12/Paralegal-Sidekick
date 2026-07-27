@@ -7,7 +7,22 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "electron-start": "ng build --base-href ./ && electron ."
+    "electron-start": "ng build --base-href ./ && electron .",
+    "rebuild": "electron-rebuild -f -w better-sqlite3",
+    "package-windows": "rm -rf build && rm -rf dist && npm run build && electron-builder -w -c.extraMetadata.main=build/electron.js"
+  },
+  "build": {
+    "files": [
+      "build/**/*",
+      "node_modules/**/*",
+      "public/**/*"
+    ],
+    "directories": {
+      "buildResources": "public"
+    },
+    "extraResources": [
+      "./profiles.db"
+    ]
   },
   "main": "main.js",
   "type": "module",
@@ -24,20 +39,27 @@
     "@angular/router": "^21.2.0",
     "@signaldb/angular": "^1.0.6",
     "@signaldb/core": "^1.8.1",
+    "@signaldb/fs": "^1.0.1",
+    "@vitest/coverage-v8": "^4.1.10",
+    "better-sqlite3": "^13.0.1",
     "ngx-extended-pdf-viewer": "^28.1.0",
+    "pdf-lib": "^1.17.1",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
     "@angular/build": "^21.2.16",
     "@angular/cli": "^21.2.16",
     "@angular/compiler-cli": "^21.2.0",
+    "@electron/rebuild": "^4.2.0",
     "@tailwindcss/postcss": "^4.1.12",
+    "@types/node": "^26.1.1",
+    "@vitest/ui": "^4.1.10",
     "electron": "^42.4.1",
-    "jsdom": "^28.0.0",
+    "jsdom": "^28.1.0",
     "postcss": "^8.5.3",
     "prettier": "^3.8.1",
     "tailwindcss": "^4.1.12",
     "typescript": "~5.9.2",
-    "vitest": "^4.0.8"
+    "vitest": "^4.1.10"
   }
 }

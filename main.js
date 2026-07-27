@@ -1,17 +1,46 @@
 import { app, BrowserWindow } from 'electron';
+import fs from 'fs';
 import path from 'path';
 import url from 'url';
 
+// Stored under Electron's userData directory so it survives app restarts,
+// updates, and reinstalls, rather than living inside the (often read-only
+// or update-replaced) app bundle/resources.
+const getDbPath = () => {
+  const persistedDbPath = path.join(app.getPath('userData'), 'profiles.db');
+
+  if (!fs.existsSync(persistedDbPath)) {
+    // app.isPackaged is false when running from source (e.g. `electron .`),
+    // in which case process.resourcesPath points at Electron's own
+    // resources rather than this project's.
+    const seedDbPath = app.isPackaged
+      ? path.join(process.resourcesPath, 'profiles.db')
+      : path.join(import.meta.dirname, 'profiles.db');
+
+    if (fs.existsSync(seedDbPath)) {
+      fs.copyFileSync(seedDbPath, persistedDbPath);
+    }
+  }
+
+  return persistedDbPath;
+};
+
 const createWindow = () => {
+  const dbPath = getDbPath();
+
   const win = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
-            nodeIntegration: true,
-            contextIsolation: false,
-            enableRemoteModule: true,
+      preload: path.join(import.meta.dirname, 'preload.js'),
+      nodeIntegration: false,
+      contextIsolation: true,
+      // better-sqlite3 is a native addon; the sandboxed preload context
+      // can't load native modules, so the sandbox must be disabled here.
+      sandbox: false,
+      additionalArguments: [`--db-path=${dbPath}`],
     },
-  })
+  });
 
   win.loadURL(
         url.format({
