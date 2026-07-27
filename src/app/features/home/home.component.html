@@ -26,7 +26,7 @@
     <div class="h-1/2 w-full">
       <mat-form-field class="pl-40">
         <mat-select (selectionChange)="onClientChange($event)" formControlName="clientSelect">
-          @for (client of this.returnedClients; track client) {
+          @for (client of this.sqliteClients; track client) {
             <mat-option [value]="client.name">{{client.name}}</mat-option>
           }
         </mat-select>

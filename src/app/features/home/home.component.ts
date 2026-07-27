@@ -10,6 +10,7 @@ import { ClientProfile } from '../../models/client-profile.model';
 import { FormFields } from '../../models/form-fields.model';
 import { FormFieldsService } from '../../core/form-fields.service';
 import { ClientProfileService } from '../../core/client-profile.service';
+import { SqliteClientProfileService } from '../../core/sqlite-client-profile.service';
 
 
 @Component({
@@ -25,8 +26,10 @@ export class HomeComponent implements OnInit {
   protected router: Router = inject(Router);
   protected formFieldsService: FormFieldsService = inject(FormFieldsService);
   protected clientProfileService: ClientProfileService = inject(ClientProfileService);
+  protected sqliteClientProfileService: SqliteClientProfileService = inject(SqliteClientProfileService);
 
   protected returnedClients: ClientProfile[] | undefined;
+  protected sqliteClients: ClientProfile[] = [];
 
   protected _forms: Record<string, FormFields>;
   protected forms: FormFields[] = [];
@@ -90,23 +93,16 @@ export class HomeComponent implements OnInit {
 
   constructor() {
     // Replace with data persistence
-    this.clientProfileService.createNewClient(this.clients[0]);
-    this.clientProfileService.createNewClient(this.clients[1]);
-    this.clientProfileService.createNewClient(this.clients[2]);
-    this.clientProfileService.createNewClient(this.clients[3]);
+    // this.clientProfileService.createNewClient(this.clients[0]);
+    // this.clientProfileService.createNewClient(this.clients[1]);
+    // this.clientProfileService.createNewClient(this.clients[2]);
+    // this.clientProfileService.createNewClient(this.clients[3]);
 
     this._forms = this.formFieldsService.formMap;
     this.forms[0] = this._forms["HIPAA Authorization"];
     this.forms[1] = this._forms["Court Subpoena"];
 
-    effect((onCleanup) => {
-      const clientsCursor = this.clientProfileService.getAllClients();
-      this.returnedClients = clientsCursor?.fetch();
-
-      onCleanup(() => {
-        clientsCursor?.cleanup();
-      })
-    })
+    this.sqliteClients = this.sqliteClientProfileService.getAllProfiles();
   }
 
   onClientChange(event: MatSelectChange) {

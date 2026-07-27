@@ -180,4 +180,12 @@ export class FormFields {
   get accidentType(): AccidentTypes | undefined {
     return this._accidentType;
   }
+
+  set healthProviderName(value: string) {
+    this._healthProviderName = value;
+  }
+
+  set healthProviderAddress(value: string) {
+    this._healthProviderAddress = value;
+  }
 }
