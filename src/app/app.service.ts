@@ -8,30 +8,10 @@ import { FormFields } from './models/form-fields.model';
 export class AppService {
 
   private _profile = signal<ClientProfile | null>(null);
-  readonly profile = this._profile.asReadonly(); 
+  readonly profile = this._profile.asReadonly();
 
   private _form = signal<FormFields | null>(null);
   readonly form = this._form.asReadonly();
-
-
-  private _count = signal(0);  
-  readonly count = this._count.asReadonly();
-
-
-  increment() {
-    this._count.update(val => val + 1);
-  }
-
-  setProfile(newProfile: ClientProfile) {
-    let currentName: string = this.profile.name;
-    if (newProfile != undefined) {
-      this._profile.set(newProfile);
-    }
-  }
-
-  setFormFields(newForm: string) {
-    // let currentForm: string = 
-  }
 
   setCurrentForm(newForm: FormFields) {
     this._form.set(newForm);
@@ -40,5 +20,5 @@ export class AppService {
   setCurrentClientProfile(newProfile: ClientProfile) {
     this._profile.set(newProfile);
   }
-  
+
 }

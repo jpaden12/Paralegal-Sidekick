@@ -30,13 +30,11 @@ const createWindow = () => {
 
   const win = new BrowserWindow({
     width: 800,
-    height: 600,
+    height: 800,
     webPreferences: {
       preload: path.join(import.meta.dirname, 'preload.js'),
       nodeIntegration: false,
       contextIsolation: true,
-      // better-sqlite3 is a native addon; the sandboxed preload context
-      // can't load native modules, so the sandbox must be disabled here.
       sandbox: false,
       additionalArguments: [`--db-path=${dbPath}`],
     },

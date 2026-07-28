@@ -1,6 +1,6 @@
-<!-- Header Containing form and profile name - 15% of page -->
-<div class="h-1/20 w-full bg-sky-50">
-
+<!-- Header Containing form and profile name - 5% of page -->
+<div class="h-1/20 w-full bg-sky-200">
+  <app-header></app-header>
 </div>
 <!-- Top Spacer Containing Form Name - 15% of Page-->
 <div class="h-15/100 w-full bg-sky-100 flex items-center justify-center">
@@ -8,7 +8,7 @@
 </div>
 
 <!-- Form - scrollable -->
-<div class="w-full bg-sky-200 flex flex-row" [formGroup]="form">
+<div class="w-full bg-sky-200 flex flex-row" [formGroup]="pageForm">
   <!-- Field Labels -->
   <div class="grid grid-rows-12 w-1/2">
     <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Client Name</div>
@@ -79,7 +79,7 @@
         </mat-form-field>
       </div>
     }
-    
+
     @if (this.currentForm?.healthProviderAddress !== undefined) {
       <div class="flex items-center pl-8 min-h-20">
         <mat-form-field class="w-72">
@@ -174,5 +174,5 @@
 
 <!-- Footer - 10% of Page -->
 <div class="h-2/20 w-full">
-  
+
 </div>

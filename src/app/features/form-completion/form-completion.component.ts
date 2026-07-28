@@ -11,26 +11,36 @@ import { ClientProfile } from '../../models/client-profile.model';
 import { FormFields } from '../../models/form-fields.model';
 import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
+import { HeaderComponent } from '../../shared/header/header.component';
 
 @Component({
   selector: 'form-completion',
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatCheckboxModule, MatSelectModule, MatButtonModule],
+  imports: [
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatCheckboxModule,
+    MatSelectModule,
+    MatButtonModule,
+    HeaderComponent,
+  ],
   templateUrl: './form-completion.component.html',
   styleUrl: './form-completion.component.css',
 })
 export class FormCompletionComponent implements OnInit {
-
   protected router: Router = inject(Router);
 
   protected globalState: AppService = inject(AppService);
   protected currentClient: ClientProfile | null;
   protected currentForm: FormFields | null;
 
-  formName: string | undefined; 
+  formName: string | undefined;
   formId: number | undefined;
-  clientName: string | undefined; 
+  clientName: string | undefined;
 
-  form = new FormGroup({
+  pageForm = new FormGroup({
     clientName: new FormControl(''),
     clientDOB: new FormControl<Date | null>(null),
     clientAddress: new FormControl(''),
@@ -58,36 +68,34 @@ export class FormCompletionComponent implements OnInit {
     this.formName = this.currentForm?.formName;
     this.formId = this.currentForm?.formId;
     this.clientName = this.currentClient?.name;
-    // 
-    switch(this.formId) {
-
-      case 1: 
-        // HIPAA Authorization 
-        
+    //
+    switch (this.formId) {
+      case 1:
+        // HIPAA Authorization
 
         break;
-      case 2: 
-        // Court Subpoena 
+      case 2:
+        // Court Subpoena
 
         break;
-      case 3: 
+      case 3:
         // Office Subpoena
 
         break;
-
     }
-
   }
 
   proceedToPreview(): void {
     if (this.currentForm) {
-      this.currentForm.healthProviderName = this.form.get('healthProviderName')?.getRawValue();
-      this.currentForm.healthProviderAddress = this.form.get('healthProviderAddress')?.getRawValue();
-
+      this.currentForm.healthProviderName = this.pageForm.get('healthProviderName')?.getRawValue();
+      this.currentForm.healthProviderAddress = this.pageForm
+        .get('healthProviderAddress')
+        ?.getRawValue();
+      this.currentForm.documentDestinationName = this.pageForm.get('documentDestinationName')?.getRawValue();
+      this.currentForm.documentDestinationAddress = this.pageForm.get('documentDestinationAddress')?.getRawValue();
+      this.currentForm.medicalForm = this.pageForm.get('medicalForm')?.getRawValue();
+      this.currentForm.medicalAccidentDate = this.pageForm.get('medicalAccidentDate')?.getRawValue();
     }
-    this.router.navigate(['/preview'])
+    this.router.navigate(['/preview']);
   }
-
-
-  
 }

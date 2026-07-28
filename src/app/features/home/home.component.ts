@@ -1,21 +1,23 @@
-import { ChangeDetectionStrategy, Component, effect, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
-import { Router, RouterLink } from "@angular/router";
+import { Router } from "@angular/router";
 import { AppService } from '../../app.service';
-import { FormControl, FormsModule, ReactiveFormsModule, FormGroup, ɵInternalFormsSharedModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { ClientProfile } from '../../models/client-profile.model';
 import { FormFields } from '../../models/form-fields.model';
 import { FormFieldsService } from '../../core/form-fields.service';
 import { ClientProfileService } from '../../core/client-profile.service';
 import { SqliteClientProfileService } from '../../core/sqlite-client-profile.service';
+import { HeaderComponent } from '../../shared/header/header.component';
 
 
 @Component({
   selector: 'home',
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatSelectModule, MatGridListModule, MatButtonModule, ɵInternalFormsSharedModule],
+  imports: [ReactiveFormsModule, MatFormFieldModule, MatSelectModule,
+    MatGridListModule, MatButtonModule, HeaderComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -165,7 +167,6 @@ export class HomeComponent implements OnInit {
       const formToSwitchTo: FormFields = this.formFieldsService.formMap[selectedForm];
       this.globalState.setCurrentForm(formToSwitchTo);
     }
-
 
     this.router.navigate(['/preview'])
   }
