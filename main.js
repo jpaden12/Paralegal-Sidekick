@@ -29,7 +29,7 @@ const createWindow = () => {
   const dbPath = getDbPath();
 
   const win = new BrowserWindow({
-    width: 800,
+    width: 1000,
     height: 800,
     webPreferences: {
       preload: path.join(import.meta.dirname, 'preload.js'),

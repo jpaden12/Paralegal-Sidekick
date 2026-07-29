@@ -7,10 +7,11 @@ import { FormFieldsService } from '../../core/form-fields.service';
 import { ClientProfile } from '../../models/client-profile.model';
 import { FormFields } from '../../models/form-fields.model';
 import { MatButton } from '@angular/material/button';
+import { HeaderComponent } from '../../shared/header/header.component';
 
 @Component({
   selector: 'app-preview-page',
-  imports: [MatButton],
+  imports: [MatButton, HeaderComponent],
   templateUrl: './preview-page.component.html',
   styleUrl: './preview-page.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -72,18 +73,17 @@ export class PreviewPageComponent {
     // Get the height of the first page
     const { height } = firstPage.getSize();
 
-    // Draw the client's name diagonally across the first page
+    // Draw the health provider name
     if (this.currentForm?.healthProviderName) {
       firstPage.drawText(this.currentForm?.healthProviderName, {
         x: 70,
         y: 382,
         size: 8,
         font: helveticaFont,
-        color: rgb(0, 0, 0),
-        // rotate: degrees(-45),
+        color: rgb(0, 0, 0)
       });
     }
-
+    // Draw the health provider address
     if (this.currentForm?.healthProviderAddress) {
       firstPage.drawText(this.currentForm?.healthProviderAddress, {
         x: 200,
@@ -91,18 +91,143 @@ export class PreviewPageComponent {
         size: 8,
         font: helveticaFont,
         color: rgb(0, 0, 0),
-        // rotate: degrees(-45),
+
       });
     }
 
-    // firstPage.drawText("DRAW ME", {
-    //   x: 70,
-    //   y: 382,
-    //   size: 8,
-    //   font: helveticaFont,
-    //   color: rgb(0, 0, 0),
-    //   // rotate: degrees(-45),
-    // });
+    // Draw the patient's name
+    if (this.currentClient?.name != null) {
+      firstPage.drawText(this.currentClient?.name, {
+        x: 60,
+        y: 670,
+        size: 8,
+        font: helveticaFont,
+        color: rgb(0, 0, 0)
+      });
+    }
+
+    // Draw the patient's DOB
+    if (this.currentClient?.date_of_birth != null) {
+      firstPage.drawText(this.currentClient?.date_of_birth.toISOString().split('T')[0], {
+        x: 332,
+        y: 670,
+        size: 8,
+        font: helveticaFont,
+        color: rgb(0, 0, 0),
+      });
+    }
+
+    // Draw the patient's SSN (same row as Patient Name / DOB)
+    if (this.currentClient?.ssn != null) {
+      firstPage.drawText(this.currentClient?.ssn.toString(), {
+        x: 450,
+        y: 670,
+        size: 8,
+        font: helveticaFont,
+        color: rgb(0, 0, 0),
+      });
+    }
+
+    // Draw the patient's address
+    if (this.currentClient?.address) {
+      firstPage.drawText(this.currentClient?.address, {
+        x: 60,
+        y: 644,
+        size: 8,
+        font: helveticaFont,
+        color: rgb(0, 0, 0),
+      });
+    }
+
+    // Item 10: mark the "At request of individual" reason-for-release checkbox
+    firstPage.drawText('X', {
+      x: 75,
+      y: 183,
+      size: 8,
+      font: helveticaFont,
+      color: rgb(0, 0, 0),
+    });
+
+    // Item 11: date/event on which this authorization will expire
+    firstPage.drawText('Upon completion of litigation', {
+      x: 310,
+      y: 183,
+      size: 8,
+      font: helveticaFont,
+      color: rgb(0, 0, 0),
+    });
+
+    // Item 12: name of person signing form, if not the patient
+    firstPage.drawText('Barry Woolfson, Esq.', {
+      x: 70,
+      y: 149,
+      size: 8,
+      font: helveticaFont,
+      color: rgb(0, 0, 0),
+    });
+
+    // Item 13: authority to sign on behalf of patient
+    firstPage.drawText('Attorney in Fact -- See LPOA on back of this form', {
+      x: 310,
+      y: 149,
+      size: 8,
+      font: helveticaFont,
+      color: rgb(0, 0, 0),
+    });
+
+    // Draw the document destination name (Item 8, left half of the blank line)
+    if (this.currentForm?.documentDestinationName) {
+      firstPage.drawText(this.currentForm?.documentDestinationName, {
+        x: 70,
+        y: 359,
+        size: 8,
+        font: helveticaFont,
+        color: rgb(0, 0, 0),
+      });
+    }
+
+    // Draw the document destination address (Item 8, right half of the blank line)
+    if (this.currentForm?.documentDestinationAddress) {
+      firstPage.drawText(this.currentForm?.documentDestinationAddress, {
+        x: 200,
+        y: 359,
+        size: 8,
+        font: helveticaFont,
+        color: rgb(0, 0, 0),
+      });
+    }
+
+    // Mark the "Medical Record from (date) to (date)" checkbox in Item 9(a)
+    if (this.currentForm?.medicalForm) {
+      firstPage.drawText('X', {
+        x: 77,
+        y: 335,
+        size: 8,
+        font: helveticaFont,
+        color: rgb(0, 0, 0),
+      });
+    }
+
+    // Draw the accident date into the "from (insert date)" blank on that same line
+    if (this.currentForm?.medicalAccidentDate != null) {
+      firstPage.drawText(this.currentForm?.medicalAccidentDate.toISOString().split('T')[0], {
+        x: 215,
+        y: 335,
+        size: 8,
+        font: helveticaFont,
+        color: rgb(0, 0, 0),
+      });
+    }
+
+    firstPage.drawText("Present", {
+      x: 370,
+      y: 335,
+      size: 8,
+      font: helveticaFont,
+      color: rgb(0, 0, 0),
+    });
+
+
 
     // Serialize the PDFDocument to bytes (a Uint8Array)
     return pdfDoc.save();

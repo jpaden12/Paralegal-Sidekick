@@ -68,7 +68,19 @@ export class FormCompletionComponent implements OnInit {
     this.formName = this.currentForm?.formName;
     this.formId = this.currentForm?.formId;
     this.clientName = this.currentClient?.name;
-    //
+
+    if (this.currentClient?.name != null) {
+      this.pageForm.get('clientName')?.setValue(this.currentClient?.name)
+    }
+    if (this.currentClient?.address != null) {
+      console.log(this.currentClient?.address);
+      this.pageForm.get('clientAddress')?.setValue(this.currentClient?.address);
+    }
+    if (this.currentClient?.date_of_birth != null) {
+      this.pageForm.get('clientDOB')?.setValue(this.currentClient?.date_of_birth);
+    }
+
+
     switch (this.formId) {
       case 1:
         // HIPAA Authorization

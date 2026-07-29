@@ -188,4 +188,84 @@ export class FormFields {
   set healthProviderAddress(value: string) {
     this._healthProviderAddress = value;
   }
+
+  set formId(value: number) {
+    this._id = value;
+  }
+
+  set formName(value: string) {
+    this._formName = value;
+  }
+
+  set formShorthand(value: string) {
+    this._shorthand = value;
+  }
+
+  set formNumber(value: number) {
+    this._formNumber = value;
+  }
+
+  set formState(value: string) {
+    this._state = value;
+  }
+
+  set documentDestinationName(value: string) {
+    this._documentDestinationName = value;
+  }
+
+  set documentDestinationAddress(value: string) {
+    this._documentDestinationAddress = value;
+  }
+
+  set medicalForm(value: boolean) {
+    this._medicalForm = value;
+  }
+
+  set medicalAccidentDate(value: Date) {
+    this._medicalAccidentDate = value;
+  }
+
+  set diagnosticFilms(value: boolean) {
+    this._diagnosticFilms = value;
+  }
+
+  set preLitigationCaption(value: string) {
+    this._preLitigationCaption = value;
+  }
+
+  set litigationLetterCaption(value: string) {
+    this._litigationLetterCaption = value;
+  }
+
+  set subRecordsRoomNumber(value: number) {
+    this._subRecordsRoomNumber = value;
+  }
+
+  set courthouseName(value: string) {
+    this._courthouseName = value;
+  }
+
+  set courthouseAddress(value: string) {
+    this._courthouseAddress = value;
+  }
+
+  set venueCounty(value: string) {
+    this._venueCounty = value;
+  }
+
+  set indexNumber(value: number) {
+    this._indexNumber = value;
+  }
+
+  set defendants(value: string[]) {
+    this._defendants = value;
+  }
+
+  set returnDate(value: Date) {
+    this._returnDate = value;
+  }
+
+  set accidentType(value: AccidentTypes) {
+    this._accidentType = value;
+  }
 }

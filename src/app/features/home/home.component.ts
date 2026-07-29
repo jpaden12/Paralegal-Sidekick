@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit {
       name: "Patrick Mahomes",
       date_of_birth: new Date(),
       ssn: 2,
-      address: "string",
+      address: "Address",
 
       medical_provider_name: "The Doctor",
       medical_provider_address: "123 Physicans Drive",
