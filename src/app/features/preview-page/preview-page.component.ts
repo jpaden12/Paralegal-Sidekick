@@ -54,14 +54,14 @@ export class PreviewPageComponent {
     this.formPDFLink = './assets/HIPAAAuthorization.pdf';
     console.log('FORM NAME ' + this.formName);
 
+    this.generatedPDF = await this.pdfGeneratorService.buildHIPAAForm(this.formPDFLink);
+
     this.cdr.markForCheck();
 
-    this.generatedPDF = await this.pdfGeneratorService.buildHIPAAForm(this.formPDFLink);
     this.generatedPDFBlob = new Blob([new Uint8Array(this.generatedPDF)], {
       type: 'application/pdf',
     });
     const pdfObjectUrl = URL.createObjectURL(this.generatedPDFBlob);
-
     this.pdfURL = pdfObjectUrl;
     this.hipaaFormPDF = this.sanitizer.bypassSecurityTrustResourceUrl(pdfObjectUrl);
     this.pdfURL = pdfObjectUrl;
