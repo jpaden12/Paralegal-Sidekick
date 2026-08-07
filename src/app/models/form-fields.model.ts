@@ -12,6 +12,7 @@ export class FormFields {
   // #5
   private _healthProviderName?: string | null | undefined;
   private _healthProviderAddress?: string | null | undefined;
+  private _healthProviderCityState?: string | null | undefined;
 
   // #6
   private _documentDestinationName?: string | null | undefined;
@@ -33,10 +34,10 @@ export class FormFields {
   private _indexNumber?: number | null | undefined;
 
   // 22-28
-  private _defendants?: string[] | null | undefined;
+  private _defendants?: string | null | undefined;
   private _returnDate?: Date | null | undefined;
   // Add an enum for this type
-  private _accidentType?: AccidentTypes | undefined;
+  private _accidentType?: AccidentTypes | null | undefined;
 
   constructor(
     id: number,
@@ -47,6 +48,7 @@ export class FormFields {
 
     health_provider_name?: string | null | undefined,
     health_provider_address?: string | null | undefined,
+    health_provider_city_state?: string | null | undefined,
 
     document_destination_name?: string | null | undefined,
     document_destination_address?: string | null | undefined,
@@ -64,9 +66,9 @@ export class FormFields {
     venue_county?: string | null | undefined,
     index_number?: number | null | undefined,
 
-    defendants?: string[] | null | undefined,
+    defendants?: string | null | undefined,
     return_date?: Date | null | undefined,
-    accident_type?: AccidentTypes | undefined,
+    accident_type?: AccidentTypes | undefined | null,
 
   ) {
     this._id = id;
@@ -76,6 +78,7 @@ export class FormFields {
     this._state = state;
     this._healthProviderName = health_provider_name;
     this._healthProviderAddress = health_provider_address;
+    this._healthProviderCityState = health_provider_city_state;
     this._documentDestinationName = document_destination_name;
     this._documentDestinationAddress = document_destination_address;
     this._medicalForm = medical_form;
@@ -93,18 +96,18 @@ export class FormFields {
     this._litigationLetterCaption = litigation_letter_caption;
   }
 
-  get formId(): number { 
-    return this._id; 
+  get formId(): number {
+    return this._id;
   }
 
-  get formName(): string { 
-    return this._formName; 
+  get formName(): string {
+    return this._formName;
   }
 
   get formShorthand(): string {
-     return this._shorthand; 
+     return this._shorthand;
   }
-  
+
   get formNumber(): number | null | undefined {
     return this._formNumber;
   }
@@ -119,6 +122,10 @@ export class FormFields {
 
   get healthProviderAddress(): string | null | undefined {
     return this._healthProviderAddress;
+  }
+
+  get healthProviderCityState(): string | null | undefined {
+    return this._healthProviderCityState;
   }
 
   get documentDestinationName(): string | null | undefined {
@@ -169,7 +176,7 @@ export class FormFields {
     return this._indexNumber;
   }
 
-  get defendants(): string[] | null | undefined {
+  get defendants(): string | null | undefined {
     return this._defendants;
   }
 
@@ -177,7 +184,7 @@ export class FormFields {
     return this._returnDate;
   }
 
-  get accidentType(): AccidentTypes | undefined {
+  get accidentType(): AccidentTypes | undefined | null {
     return this._accidentType;
   }
 
@@ -187,6 +194,10 @@ export class FormFields {
 
   set healthProviderAddress(value: string) {
     this._healthProviderAddress = value;
+  }
+
+  set healthProviderCityState(value: string) {
+    this._healthProviderCityState = value;
   }
 
   set formId(value: number) {
@@ -257,7 +268,7 @@ export class FormFields {
     this._indexNumber = value;
   }
 
-  set defendants(value: string[]) {
+  set defendants(value: string) {
     this._defendants = value;
   }
 

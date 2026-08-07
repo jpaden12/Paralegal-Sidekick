@@ -20,6 +20,9 @@
     @if (this.currentForm?.healthProviderAddress !== undefined) {
       <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Health Provider Address</div>
     }
+    @if (this.currentForm?.healthProviderCityState !== undefined) {
+      <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Health Provider City, State, Zip</div>
+    }
     @if (this.currentForm?.documentDestinationName !== undefined) {
       <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Document Destination Name</div>
     }
@@ -46,6 +49,18 @@
     }
     @if (this.currentForm?.indexNumber !== undefined) {
       <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Index Number</div>
+    }
+    @if (this.currentForm?.defendants !== undefined) {
+      <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Defendants</div>
+    }
+    @if (this.currentForm?.litigationLetterCaption !== undefined) {
+      <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Litigation Letter Caption</div>
+    }
+    @if (this.currentForm?.venueCounty !== undefined) {
+      <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Venue County</div>
+    }
+    @if (this.currentForm?.returnDate !== undefined) {
+      <div class="p-4 text-black text-2xl text-right flex items-center justify-end min-h-20">Return Date</div>
     }
   </div>
 
@@ -85,6 +100,14 @@
         <mat-form-field class="w-72">
           <mat-label>Health Provider Address</mat-label>
           <textarea matInput formControlName="healthProviderAddress" rows="1"></textarea>
+        </mat-form-field>
+      </div>
+    }
+    @if (this.currentForm?.healthProviderCityState !== undefined) {
+      <div class="flex items-center pl-8 min-h-20">
+        <mat-form-field class="w-72">
+          <mat-label>Health Provider City, State, Zip</mat-label>
+          <textarea matInput formControlName="healthProviderCityState" rows="1"></textarea>
         </mat-form-field>
       </div>
     }
@@ -160,6 +183,40 @@
         <mat-form-field class="w-72">
           <mat-label>Index Number</mat-label>
           <textarea matInput formControlName="indexNumber" rows="1"></textarea>
+        </mat-form-field>
+      </div>
+    }
+    @if (this.currentForm?.defendants !== undefined) {
+      <div class="flex items-center pl-8 min-h-20">
+        <mat-form-field class="w-72">
+          <mat-label>Defendants</mat-label>
+          <textarea matInput formControlName="defendants" rows="1" placeholder="e.g. John Doe, Jane Roe"></textarea>
+        </mat-form-field>
+      </div>
+    }
+    @if (this.currentForm?.litigationLetterCaption !== undefined) {
+      <div class="flex items-center pl-8 min-h-20">
+        <mat-form-field class="w-72">
+          <mat-label>Litigation Letter Caption</mat-label>
+          <textarea matInput formControlName="litigationLetterCaption" rows="1"></textarea>
+        </mat-form-field>
+      </div>
+    }
+    @if (this.currentForm?.venueCounty !== undefined) {
+      <div class="flex items-center pl-8 min-h-20">
+        <mat-form-field class="w-72">
+          <mat-label>Venue County</mat-label>
+          <textarea matInput formControlName="venueCounty" rows="1"></textarea>
+        </mat-form-field>
+      </div>
+    }
+    @if (this.currentForm?.returnDate !== undefined) {
+      <div class="flex items-center pl-8 min-h-20">
+        <mat-form-field class="w-72">
+          <mat-label>Return Date</mat-label>
+          <input matInput [matDatepicker]="returnDatePicker" formControlName="returnDate" />
+          <mat-datepicker-toggle matIconSuffix [for]="returnDatePicker" />
+          <mat-datepicker #returnDatePicker />
         </mat-form-field>
       </div>
     }
