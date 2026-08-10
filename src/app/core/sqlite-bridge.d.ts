@@ -3,6 +3,7 @@ export interface ClientProfileRow {
   name: string;
   date_of_birth: string | null;
   address: string | null;
+  gender: string | null;
   medical_provider_name: string | null;
   medical_provider_address: string | null;
 }
@@ -11,6 +12,7 @@ export interface ClientProfileInsert {
   name: string;
   date_of_birth: string | null;
   address: string | null;
+  gender: string | null;
   medical_provider_name: string | null;
   medical_provider_address: string | null;
 }

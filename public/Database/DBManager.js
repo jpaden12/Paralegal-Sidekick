@@ -15,6 +15,7 @@ db.exec(`
     name TEXT NOT NULL,
     date_of_birth TEXT,
     address TEXT,
+    gender TEXT,
     medical_provider_name TEXT,
     medical_provider_address TEXT
   )

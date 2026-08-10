@@ -14,8 +14,8 @@ export const readAllProfiles = () => {
 export const insertProfile = (profile) => {
   try {
     const insertQuery = db.prepare(`
-      INSERT INTO client_profiles (name, date_of_birth, address, medical_provider_name, medical_provider_address)
-      VALUES (@name, @date_of_birth, @address, @medical_provider_name, @medical_provider_address)
+      INSERT INTO client_profiles (name, date_of_birth, address, gender, medical_provider_name, medical_provider_address)
+      VALUES (@name, @date_of_birth, @address, @gender, @medical_provider_name, @medical_provider_address)
     `);
 
     const transaction = db.transaction((row) => insertQuery.run(row));

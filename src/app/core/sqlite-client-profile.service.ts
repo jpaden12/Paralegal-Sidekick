@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ClientProfile } from '../models/client-profile.model';
 import { ClientProfileRow } from './sqlite-bridge';
+import { GenderTypes } from '../models/types';
 
 @Injectable({
   providedIn: 'root',
@@ -17,9 +18,15 @@ export class SqliteClientProfileService {
       name: row.name,
       date_of_birth: row.date_of_birth ? new Date(row.date_of_birth) : undefined,
       address: row.address ?? undefined,
+      gender: this.parseGender(row.gender) ?? undefined,
       medical_provider_name: row.medical_provider_name ?? undefined,
       medical_provider_address: row.medical_provider_address ?? undefined,
       savedForms: [],
     };
   }
+
+  private parseGender(gender: string | null): GenderTypes | undefined {
+    return Object.values(GenderTypes).includes(gender as GenderTypes) ? (gender as GenderTypes) : undefined;
+  }
+
 }
