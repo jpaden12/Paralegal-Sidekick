@@ -13,11 +13,11 @@ export class AppService {
   private _form = signal<FormFields | null>(null);
   readonly form = this._form.asReadonly();
 
-  setCurrentForm(newForm: FormFields) {
+  setCurrentForm(newForm: FormFields | null) {
     this._form.set(newForm);
   }
 
-  setCurrentClientProfile(newProfile: ClientProfile) {
+  setCurrentClientProfile(newProfile: ClientProfile | null) {
     this._profile.set(newProfile);
   }
 
