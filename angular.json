@@ -3,7 +3,7 @@
   "version": 1,
   "cli": {
     "packageManager": "npm",
-    "schematicCollections": ["@schematics/angular", "playwright-ng-schematics"]
+    "schematicCollections": ["angular-eslint", "@schematics/angular", "playwright-ng-schematics"]
   },
   "newProjectRoot": "projects",
   "projects": {
@@ -104,6 +104,12 @@
             "production": {
               "devServerTarget": "paralegal-sidekick:serve:production"
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
           }
         }
       }
